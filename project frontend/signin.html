@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./all css/signin.css">
+    <link rel="stylesheet" href="./all css/navbar.css">
+    <link rel="stylesheet" href="./all css/futter.css">
+</head>
+<body>
+    <div id="ccc"></div>
+    <div id="name" style="text-align: center;"></div>
+    <div id="sall">
+        <div style="margin-top:100px">
+            <div id="sicre">
+                <p class="sit" style="font-size:20px">Welcome</p>
+                <hr>
+                <p class="sit"style="font-size:10px,font-weight:bold;margin-bottom:2px">Email Address</p>
+                <input class="siinp" id="email" type="text" placeholder="Email Address" />
+                <p class="sit"style="font-size:10px,font-weight:bold" onclick="signin()"><span style="background-color:green" class="dot"></span>I'm already registered</p>
+                <p class="sit"style="font-size:10px,font-weight:bold" onclick="signup()"><span id="signu" class="dot"></span>I'm new to THE OUTNET</p>
+                <p class="sit"style="font-size:10px,font-weight:bold;margin-bottom:2px">Password</p>
+                <input class="siinp" id="password" type="text" placeholder="Password" />
+                <br />
+                <button id="signinbtn">Sign In</button>
+                <p class="sit"style="font-size:3px,font-weight:bold">Forgot your password?</p>
+            </div>
+        </div>
+        
+    </div>
+    <div id="footerimp"></div>
+
+</body>
+</html>
+<script type="module">
+    import navbar from "./allfoundhtml/navbar.js"
+    import futter from "./allfoundhtml/allfooter.js"
+    document.getElementById("ccc").innerHTML =navbar()
+    document.getElementById("footerimp").innerHTML=futter();
+</script>
+<script>
+    function signin(){
+        window.location.href="signin.html"
+    }
+    function signup(){
+        window.location.href="signup.html"
+    }
+
+     document.getElementById("signinbtn").addEventListener("click",absign);
+    async function absign() {
+        try{
+        let login_data={
+            email:document.getElementById("email").value,
+            password:document.getElementById("password").value
+        }
+
+        login_data=JSON.stringify(login_data);
+        console.log(login_data);
+        let re=`http://localhost:2445/login`
+
+        let ret=await fetch(re,{
+            method:"post",
+            body:login_data,
+            headers:{
+                "content-type":"application/json"
+            },
+            
+        })
+
+        let data=await ret.json();
+        console.log(data)
+        if (data==null){
+            console.log(here)
+        }
+        
+
+        let username=document.getElementById("email").value;
+        localStorage.setItem("useremail",username)
+        localStorage.setItem("username",username);
+        let token=data.token;
+        
+        console.log(token)
+        if(token==null){
+            
+            return;
+        }else{
+            alert("YOU HAVE SUCCESSFULLY LOGIN")
+            getprofile(username,token)
+            setTimeout(function(){
+                window.location.href="homepage.html"
+            },3000)
+        }
+        localStorage.setItem("token",token);
+        
+    }
+    catch(e){
+        console.log(e)
+        if(e){
+            alert("PLEASE ENTER A VALID USERNAME OR PASSWORD")
+        }else{
+            alert("YOU HAVE SUCCESSFULLY LOGIN")
+        }
+    }
+    }
+
+
+    async function getprofile(username,token){
+                console.log(username)
+            let api=`http://localhost:2445/user/${username}`
+
+            let res=await fetch(api,{
+                method:"get",
+                headers:{
+                    "content-type":"applicationprofile",
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            let ab=await res.json();
+            
+            console.log(ab[0].firstName);
+            document.getElementById("name").append("HI!"+"---"+ab[0].firstName+"   "+ab[0].lastName)
+            localStorage.setItem("username",(ab[0].firstName+" "+ab[0].lastName))
+
+        }
+        
+            
+    
+</script>
+<script type="module" id="ccc">
+    document.getElementById("home").addEventListener("click",function(){
+        window.location.href="homepage.html"
+    })
+    const username=localStorage.getItem("username");
+    if (username!=null){
+        document.getElementById("usernameuu").innerHTML = "";
+        document.getElementById("usernameuu").append("Hi"+"!"+" "+username)
+    }
+    
+</script>

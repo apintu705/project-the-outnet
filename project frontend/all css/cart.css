@@ -1,0 +1,60 @@
+#cart{
+    overflow: hidden;
+    width:90%;
+    margin:auto;
+    
+}#cartu{
+    
+    background-color:white;
+    padding:30px;
+}
+#cartproduct{
+    margin-top: 30px;
+    
+    width:60%;
+    background-color:white;
+    overflow:hidden;
+    height:200px;
+    
+}#cartmain{
+    margin-top: 30px;
+}
+#cartcredentials{
+    margin-left: 20px;
+    margin-top: 30px;
+    width:40%;
+    
+    
+}#cartordersummery{
+    background-color:white;
+    padding:20px;
+    
+}#cartconsidered{
+    background-color:white;
+    margin-top: 20px;
+    padding:20px;
+}#cartimage{
+    padding:30px;
+    overflow:hidden;
+    height:200px;
+    
+}#cartimg{
+    height:130px;
+    width:130px;
+}#causion{
+    padding:10px; border-top:1px solid grey;background:#e1f4fd;
+    margin-top:20px;
+
+}
+#proceed{
+    margin-top:20px;
+    padding:10px;
+    height:70px;
+    width:500px;
+    border:1px solid black;background:black;
+    text-align:center;
+    color:white;
+}
+.padd{
+    padding:10px;
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./all css/navbar.css">
+    <link rel="stylesheet" href="./all css/futter.css">
+    <link rel="stylesheet" href="./all css/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+ 
+</head>
+<body>
+    <div id="ccc"></div>
+    <div style="background-color:#f2f2f2" >
+        <div id="cart" >
+            <div id="cartu" >
+                <h2>Shopping Bag</h2>
+                <p id="no of"></p>
+            </div>
+            <div style="display:flex;" >
+                <div id="cartproduct" style="display:flex">
+                    <div id="cartimage"></div>
+                    <div >
+                        <p><i style="font-size:24px" class="fa">&#xf0ac;</i></p>
+                        <div id="cartpdet"></div>
+                    </div>
+                </div>
+                <div id="cartcredentials">
+                    <div id="cartordersummery">
+                        <h2 style="text-align:center">Order Summary</h2>
+                        <div class="padd">Sub-Total:--<div id="subtotal" style="display:inline-block"></div></div>
+                        <div class="padd">Shipping:--<p style="display:inline-block;color:green">FREE</p></div>
+                        <div class="padd">Taxes & Duties:--<p style="display:inline-block;" id="tax"></p></div>
+                        <div style="padding:20px; border-top:1px solid grey; border-bottom:1px solid grey">Add a Promo Code<i style="font-size:24px;float:right" class="fa">&#xf107;</i></div>
+                        <div><h2 style="display:inline-block;">TOTAL (USD)::--   </h2><h2 style="display:inline-block;"id="amountpaid"></h2></div>
+                        <div id="causion" ><p style="text-align:center; padding:20px">Any applicable taxes and/or duties have been applied to your Bag</p></div>
+                        <a href="aftercart.html"><button ID="proceed"><i style="font-size:24px;color:white; margin-right:10px" class="fa">&#xf023;</i>PROCEED TO CHECKOUT</button></a>
+                        <div class="padd">
+                            <span style="font-size:24px" class="fa">&#xf1f3;</span>
+                            <span style="font-size:24px" class="fa">&#xf1f2;</span>
+                            <span style="font-size:24px" class="fa">&#xf1f4;</span>
+                            <span style="font-size:24px" class="fa">&#xf1f0;</span>
+                            <span style="font-size:24px" class="fa">&#xf09d;</span>
+                            v
+                        </div>
+                    </div>
+                    <div id="cartconsidered">
+                        <h4 style="color:green">Considered</h4>
+                        <p style="font-size:18px">Delivery</p>
+                        <p>Concerned about the environmental impact of your delivery? Don't worry, we'll offset this for you through our carbon credits programme.</p>
+                        <p>You can easily recycle almost all of our packaging at home.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+    <div id="footerimp"></div>
+</body>
+</html>
+<script>
+    var id=localStorage.getItem("cartpageid");
+    var token=localStorage.getItem("token");
+    if(token==null){
+        window.location.href="signin.html"
+    }
+    
+    document.getElementById("cart").append(cartfunction());
+    async function cartfunction() {
+        try{
+            // document.getElementById("code").append("----"+id)
+             let response = await fetch(`http://localhost:2445/product/main/${id}`)
+            let data=await response.json()
+            console.log(data)
+            const results=data.length;
+            e=data;
+            console.log(e.length)
+            document.getElementById("no of").append(e.length+"  "+"-"+"ITEMS")
+
+            let a=document.createElement("img");
+            a.setAttribute("id","cartimg")
+            a.src=e[0].product_id.image[0]
+            document.getElementById("cartimage").append(a)
+
+            let b=document.createElement("h4");
+            b.textContent=e[0].designer_id.designer;
+            let c=document.createElement("p");
+            c.textContent="COLOR:--"+ e[0].product_id.color;
+            let last=document.createElement("p");
+            last.style.color="red"
+            last.textContent="PRICE:--"+" " +"$"+"  "+ e[0].product_id.price;
+            let d=document.createElement("p");
+            d.style.color="red"
+            d.textContent="$"+"  "+ e[0].product_id.price;
+            let tax=(+e[0].product_id.price*(25/100))
+            
+            let total=tax+(+e[0].product_id.price);
+            console.log(total);
+            
+            let f=document.createElement("p");
+            f.style.color="green"
+            f.textContent="$"+"  "+ e[0].product_id.pricemain;
+            console.log(d)
+            document.getElementById("cartpdet").append(b,c,last,f)
+            document.getElementById("subtotal").append(d);
+            document.getElementById("tax").append("$"+"  "+tax)
+            document.getElementById("amountpaid").append("$"+"  "+total);
+            localStorage.setItem("total",[total])
+        }
+        catch(e){
+            console.log(e)
+        }
+    }
+</script>
+
+<script type="module">
+    import navbar from "./allfoundhtml/navbar.js"
+    import futter from "./allfoundhtml/allfooter.js"
+    document.getElementById("ccc").innerHTML =navbar()
+    document.getElementById("footerimp").innerHTML=futter();
+</script>
+<script type="module" id="ccc">
+    document.getElementById("home").addEventListener("click",function(){
+        window.location.href="homepage.html"
+    })
+    const username=localStorage.getItem("username");
+    if (username!=null){
+        console.log("yes")
+        let lame=document.createElement("button");
+        lame.style.color="red"
+        lame.textcontent="sign out"
+        lame.onclick=function(){
+            localStorage.clear()
+        }
+        document.getElementById("usernameuu").innerHTML = "";
+        document.getElementById("usernameuu").append("Hi"+"!"+" "+username,lame)
+    }
+    
+</script>
+<script type="module" id="ccc">
+    import {superbrand,justin,bestseller,designer,clothing,shoes,bags,acc,iris,editorial,men} from "./alljs/nav.js"
+    document.getElementById("appendsuperbrand").addEventListener("mouseover", supe);
+    function supe() {superbrand()}
+    
+    
+    document.getElementById("appendjustin").addEventListener("mouseover",just);
+    function just(){justin()}
+    
+
+    document.getElementById("appendbestseller").addEventListener("mouseover",seller);
+    function seller() {bestseller()}
+
+    document.getElementById("appenddesigner").addEventListener("mouseover",des);
+    function des(){designer()}
+    document.getElementById("appendclothing").addEventListener("mouseover",cloth)
+    function cloth() {clothing()}
+    
+
+    document.getElementById("appendshoes").addEventListener("mouseover",shoe);
+    function shoe() {shoes()}
+
+    document.getElementById("appendbags").addEventListener("mouseover",bag);
+    function bag() {bags()}
+   
+    
+    document.getElementById("appendacc").addEventListener("mouseover",ac);
+    function ac() {acc()}
+   
+    document.getElementById("appendiris").addEventListener("mouseover",iri);
+    function iri() {iris()}
+    
+    document.getElementById("appendedi").addEventListener("mouseover",editori);
+    function editori() {editorial()}
+    
+    document.getElementById("appendmen").addEventListener("mouseover",mens);
+    function mens() {men()}
+
+</script>

@@ -1,0 +1,68 @@
+#uppernavbar{
+    height:50px;
+    background-color:#f2f2f2;
+    align-items: center;
+    display:flex;
+    flex-direction: row-reverse;
+}
+.nuline{
+    height:40px;
+    background-color:rgb(252, 252, 252);
+    border: 1px solid rgb(199, 194, 194);
+    margin-left:20px;
+    margin-right:20px;
+}.nutext:hover{
+    text-decoration:underline;
+    cursor: pointer;
+}
+#navdown{
+    
+    height:30px;
+    width:90%;
+    margin:auto;
+    margin-top: 15px;
+    background-color:#f2f2f2;
+    align-items: center;
+    display:flex;
+    flex-direction: row-reverse;
+
+}.nwline{
+    border: 1px solid rgb(180, 180, 180);
+    background-color:rgb(214, 209, 209);
+    height:10px;
+    margin-left: 50px;
+    margin-right:50px;
+}#navbar{
+    
+    width:90%;
+    margin:auto;
+    margin-top: 20px;
+    display:flex;
+
+}
+#navbari{
+    display:flex;
+}#navbaritems{
+    width:90%;
+    margin:auto;
+    display:flex;
+}
+.navitemstext{
+    margin-left:20px;
+    margin-right:20px; 
+}#navbarappend{
+    
+    width:68%;
+    margin:auto;
+    display:flex;
+}.imgappend{
+    height:300px;
+    width:300px;
+}.textmargin{
+    margin-top:50px;
+    margin-left:50px;
+}
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}

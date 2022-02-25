@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./all css/navbar.css">
+    <link rel="stylesheet" href="./all css/futter.css">
+    <link rel="stylesheet" href="./all css/description.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div id="ccc"></div>
+    <div id="desmain">
+        <div id="desallimage"></div>
+        <div id="desimage"></div>
+        <div >
+            <div id="desside" ></div>
+            <a href="cart.html"><button id="addtocart" onclick="cartpageid">ADD TO CART</button></a>
+            <br>
+            <a href="wishlist.html"><button id="wishlist" onclick="wishlistpageid">ADD TO WISH LIST</button></a>
+            <div id="desdetails">
+                details
+            </div>
+            <div id="desfit">
+                size and fit
+            </div>
+            <div id="desdelivery">
+                <p style="font-size:18px;font-weight:bold"><i style="font-size:24px;margin-right:50px" class="fa">&#xf0d1;</i>Delivery & Returns</p>
+                <p>Find out more about our delivery options and how to exchange or return</p>
+            </div>
+            <div style="margin-top:50px">Product code:---<p id="code"></p></div>
+        </div>
+    </div>
+    <div id="footerimp"></div>
+</body>
+</html>
+<script>
+    var id=localStorage.getItem('productid')
+    function cartpageid (a){
+                localStorage.setItem("cartpageid",a)
+            }
+            function wishlistpageid(b){
+                localStorage.setItem("cartpageid",[b,])
+            }
+    document.getElementById("desmain").append(product())
+    var e;
+    async function product(){
+        try{
+            document.getElementById("code").append("----"+id)
+             let response = await fetch(`http://localhost:2445/product/main/${id}`)
+            let data=await response.json()
+            
+            const results=data.length;
+            e=data;
+            console.log(e[0]._id)
+            wishlistpageid(e[0]._id)
+            cartpageid(e[0]._id)
+            console.log(e[0])
+            e[0].product_id.image.forEach(i=>{
+                console.log(i)
+                let a1=document.createElement("div");
+                a1.setAttribute("class","desalli")
+                let a=document.createElement("img");
+                a.setAttribute("id","desallim")
+                a.src=i;
+                
+                a1.onclick=function() {
+                    
+                    b.src=i;
+                    
+                }
+                a1.append(a)
+                document.getElementById("desallimage").append(a1)
+
+
+                
+
+                
+            })    
+        }
+        catch(err){
+            console.log(err)   
+        }  
+        let b=document.createElement("img");
+        b.setAttribute("id","desim")
+        b.src=e[0].product_id.image[0];
+        
+        document.getElementById("desimage").append(b)
+
+        let b1=document.createElement("div");
+        let b2=document.createElement("h3");
+        b2.textContent=e[0].designer_id.designer;
+
+        let c2=document.createElement("p");
+        c2.textContent=e[0].product_id.des;
+        b1.append(b2,c2)
+
+        let d1=document.createElement("div");
+        let d2=document.createElement("h3");
+        d2.style.color="red"
+        d2.textContent="$  "+ e[0].product_id.price;
+
+        
+        let e2=document.createElement("p");
+        e2.textContent="(  "+"$ "+e[0].product_id.pricemain+"  )";
+
+        let f2=document.createElement("p");
+        f2.textContent="Color  "+"  "+":"+e[0].product_id.color;
+        d1.append(d2,e2,f2)
+        
+        let g1=document.createElement("div");
+        
+        let m=document.createElement("div")
+        e[0].product_id.size.forEach(se=>{
+            if(se==null){
+             g1.append(   "One Size"  )
+            }
+            
+            g1.append( se+"   "+","+"      ")  
+            m.append( g1 )
+        })
+        let n=document.createElement("div")
+        let g2=document.createElement("div")
+        e[0].product_id.details.forEach(se=>{
+            if(se==null){
+             g2.append(   "One Size"  )
+            }
+            
+            g2.append( se+"   "+","+"      ")  
+            n.append( g2 )
+        })
+        document.getElementById("desdetails").append(n)
+        let o=document.createElement("div")
+        let g3=document.createElement("div")
+        e[0].product_id.fit.forEach(se=>{
+            if(se==null){
+             g3.append(   "One Size"  )
+            }
+            
+            g3.append( se+"   "+","+"      ")  
+            o.append( g3 )
+        })
+        document.getElementById("desfit").append(0)
+        document.getElementById("desdetails").append(n)
+        
+        
+        
+        
+
+        document.getElementById("desside").append(b1,d1,"size"+"  "+" : ",m);
+        
+    }
+    
+    
+    
+</script>
+<script type="module">
+    import navbar from "./allfoundhtml/navbar.js"
+    import futter from "./allfoundhtml/allfooter.js"
+    document.getElementById("ccc").innerHTML =navbar()
+    document.getElementById("footerimp").innerHTML=futter();
+</script>
+<script type="module" id="ccc">
+    document.getElementById("home").addEventListener("click",function(){
+        window.location.href="homepage.html"
+    })
+    const username=localStorage.getItem("username");
+    if (username!=null){
+        console.log("yes")
+        let lame=document.createElement("button");
+        lame.style.color="red"
+        lame.textcontent="sign out"
+        lame.onclick=function(){
+            localStorage.clear()
+        }
+        document.getElementById("usernameuu").innerHTML = "";
+        document.getElementById("usernameuu").append("Hi"+"!"+" "+username,lame)
+    }
+    
+</script>
+<script type="module" id="ccc">
+    import {superbrand,justin,bestseller,designer,clothing,shoes,bags,acc,iris,editorial,men} from "./alljs/nav.js"
+    document.getElementById("appendsuperbrand").addEventListener("mouseover", supe);
+    function supe() {superbrand()}
+    
+    
+    document.getElementById("appendjustin").addEventListener("mouseover",just);
+    function just(){justin()}
+    
+
+    document.getElementById("appendbestseller").addEventListener("mouseover",seller);
+    function seller() {bestseller()}
+
+    document.getElementById("appenddesigner").addEventListener("mouseover",des);
+    function des(){designer()}
+    document.getElementById("appendclothing").addEventListener("mouseover",cloth)
+    function cloth() {clothing()}
+    
+
+    document.getElementById("appendshoes").addEventListener("mouseover",shoe);
+    function shoe() {shoes()}
+
+    document.getElementById("appendbags").addEventListener("mouseover",bag);
+    function bag() {bags()}
+   
+    
+    document.getElementById("appendacc").addEventListener("mouseover",ac);
+    function ac() {acc()}
+   
+    document.getElementById("appendiris").addEventListener("mouseover",iri);
+    function iri() {iris()}
+    
+    document.getElementById("appendedi").addEventListener("mouseover",editori);
+    function editori() {editorial()}
+    
+    document.getElementById("appendmen").addEventListener("mouseover",mens);
+    function mens() {men()}
+
+</script>

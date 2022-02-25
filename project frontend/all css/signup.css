@@ -1,0 +1,39 @@
+#sall{
+    border: 1px solid #b3d8f5;
+    width:90%;
+    margin:auto;
+    background-image: url('https://www.theoutnet.com/assets/ton-background-images/low-res.jpg');
+    background-size: cover;
+}
+#sicre{
+    border:1px solid #b3d8f5;
+    
+    width:35%;
+    background-color:white;
+    margin:auto;
+
+    
+}.sit{
+    font-family: Arial;
+    margin-left: 50px;
+}
+.siinp{
+    margin-left:50px;
+    height:50px;
+    width:400px;
+    margin-top:5px;
+}#signinbtn{
+    margin-left:50px;
+    margin-top: 30px;
+    height:60px;
+    width:400px;
+    border:1px solid black;
+    background-color:black;
+    color:white;
+}.dot {
+height: 15px;
+width: 15px;
+background-color: rgb(235, 228, 228);
+border-radius: 50%;
+display: inline-block;
+}

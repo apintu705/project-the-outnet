@@ -1,0 +1,72 @@
+#newseason{
+            
+    width:90%;
+    margin:auto;
+    margin-top:50px;
+    display:flex;
+}
+.newseasondown{
+    text-align:center;
+    margin:auto;
+    margin-top:15px;
+}
+.newseasonbtn{
+    
+    margin-left:170px;
+    margin-top:15px;
+    border: 1px solid black;
+    background-color:white;
+    height:50px;
+    width:300px;
+}
+.newseasonbtn:hover{
+    background-color:black;
+    color:white;
+    cursor: pointer;
+}
+#justin{
+    width:90%;
+    margin:auto;
+    margin-top:50px;
+    display:flex;
+    background-color:#f2f2f2;
+}
+.justinimg{
+    background:white;
+    margin-left:10px;
+    
+}
+#shopcat{
+    width:90%;
+    
+    margin:auto;
+    margin-top:50px;
+    display:flex;
+}
+.shopcatdown{
+    text-align:center;
+    margin-top: 15px;
+}
+.shopcatbtn{
+    text-align:center;
+    margin-top: 15px;
+    height:50px;
+    border: 1px solid black;
+    background-color:white;
+    margin-left: 150px;
+}
+.shopcatbtn:hover{
+    background-color:black;
+    color:white;
+    cursor: pointer;
+}
+#editorial{
+    width:90%;
+    margin:auto;
+    margin-top:50px;
+    display:flex;
+}
+.editorialdown{
+    text-align:center;
+    margin-top: 15px;
+}

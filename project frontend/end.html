@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #hi{
+            height: 100%;
+            width:100%;
+            border: 1px solid green;
+        }
+    </style>
+</head>
+<body>
+    <div id="hi"></div>
+    <div id="hm"></div>
+    <div id="hn"></div>
+    <div id="hk"></div>
+    <div id="hh"></div>
+</body>
+</html>
+<script>
+    document.getElementById("hi").addEventListener("mouseover",ab)
+    
+        async function ab(){
+            let useremail=localStorage.getItem("useremail")
+            let token=localStorage.getItem("token")
+                
+            let api=`http://localhost:2445/user/${useremail}`
+
+            let res=await fetch(api,{
+                method:"get",
+                headers:{
+                    "content-type":"applicationprofile",
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            let ab=await res.json();
+
+            var id=localStorage.getItem("cartpageid");
+            let response = await fetch(`http://localhost:2445/product/main/${id}`,{
+                method:"get",
+                headers:{
+                    "content-type":"applicationprofile",
+                    
+                }
+            })
+            let mn= await response.json()
+            var total=localStorage.getItem("total");
+
+
+            var address=localStorage.getItem("addresscity");
+            console.log(address)
+            let re=`http://localhost:2445/address/${address}`
+
+            let ret=await fetch(re,{
+                method:"get",
+                 
+                 headers:{
+                     "content-type":"application/json"
+                 },
+                
+            })
+            let ml=await ret.json();
+            console.log(ml)
+            
+
+            var card=localStorage.getItem("cardholdername");
+            console.log(address)
+            console.log(useremail)
+            
+            let rs=`http://localhost:2445/payment/${card}`
+
+            let rets=await fetch(rs,{
+                method:"get",
+                 
+                 headers:{
+                     "content-type":"application/json"
+                 },
+                
+            })
+            let mls=await rets.json();
+            
+            
+            
+            document.getElementById("hi").textContent="product description:----"+JSON.stringify(mn);
+            document.getElementById("hm").textContent="user description:---" +JSON.stringify(ab);
+            document.getElementById("hn").textContent="total amount to be paid:---" +"$"+total
+            document.getElementById("hk").textContent="usercard details:---" +JSON.stringify(mls);
+            document.getElementById("hh").textContent="useraddress details:---" +JSON.stringify(ml);
+            
+        }
+    
+</script>

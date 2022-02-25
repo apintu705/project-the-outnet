@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./all css/navbar.css">
+    <link rel="stylesheet" href="./all css/futter.css">
+    <link rel="stylesheet" href="./all css/productshow.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+<body>
+    <div id="ccc"></div>
+    <div id="psu">
+        <div ><h3 id="no of products"></h3></div>
+        <div id="recomended">Recommended<i style="font-size:24px;margin-left: 30px;" class="fa">&#xf107;</i></div>
+    </div>
+    <div id="psd">
+        <div id="psc">
+            <div id="cat" class="pscdpop">Category<i style="font-size:24px;float:right" class="fa">&#xf107;</i></div>
+            <div  id="catdown"></div>
+            <div class="pscdpop" id="dress">Dresses<i style="font-size:24px;float:right;" class="fa">&#xf107;</i></div>
+            <div class="downpop" id="dressdown"></div>
+            <div id="size" class=pscdpop>Clothing Size<i style="font-size:24px;float:right;" class="fa">&#xf107;</i></div>
+            <div id="sizedown" class="downpop"></div>
+            <div id="color" class=pscdpop>Color<i style="font-size:24px;float:right;" class="fa">&#xf107;</i></div>
+            <div id="colordown" class="downpop"></div>
+            <div class=pscdpop id="price">Price<i style="font-size:24px;float:right;" class="fa">&#xf107;</i></div>
+            <div class="downpop" id="pricedown"></div>
+            <div class=pscdpop>Fabric<i style="font-size:24px;float:right;" class="fa">&#xf107;</i></div>
+            
+            <div id="designer" class=pscdpop>Designer<i style="font-size:24px;float:right;" class="fa">&#xf107;</i></div>
+            <div id="designerdown" class="downpop"></div>
+        </div>
+        <div id="products"></div>
+    </div>
+    <div id="footerimp"></div>
+</body>
+</html>
+<script >
+    document.getElementById("cat").addEventListener("click",cat);
+    async function cat(){
+        document.getElementById("designerdown").innerHTML ="";
+        document.getElementById("dressdown").innerHTML ="";
+        document.getElementById("colordown").innerHTML ="";
+        document.getElementById("sizedown").innerHTML ="";
+        document.getElementById("dressdown").innerHTML ="";
+        try{
+             let response = await fetch(`http://localhost:2445/product/main/clothing`)
+            let data=await response.json()
+
+            let c=[]
+            for(let i=0; i<data.length; i++){
+                c.push(data[i].cat_id.categories)
+            }
+            console.log(c)
+           
+            for(let i=0; i<c.length;i++){
+                if(c[i]==c[i+1]){
+
+                }else{
+                    let a=document.createElement("div");
+                a.setAttribute("class","popdown");
+                a.textContent=c[i];
+                a.onclick=function(){
+                    localStorage.setItem("name",c[i])
+                    window.location.href="sort.html"
+                }
+                document.getElementById("catdown").append(a)
+                }
+            }
+            
+           
+      
+        }
+        catch(err){
+            console.log(err)
+            
+        }
+        document.getElementById("cat").removeEventListener("click",cat);
+        
+    }
+
+   
+    document.getElementById("price").addEventListener("click",price);
+    function price(){
+        document.getElementById("designerdown").innerHTML ="";
+        document.getElementById("dressdown").innerHTML ="";
+        document.getElementById("colordown").innerHTML ="";
+        document.getElementById("sizedown").innerHTML ="";
+        document.getElementById("dressdown").innerHTML ="";
+        document.getElementById("catdown").innerHTML ="";
+        let a=document.createElement("div");
+        a.setAttribute("class","popdown");
+        let a1= document.createElement("a");
+        a1.textContent="price low to high"
+        a.append(a1)
+        let b=document.createElement("div");
+        b.setAttribute("class","popdown");
+        let b1= document.createElement("a");
+        a1.onclick=function(){
+            localStorage.setItem("price","price low to high")
+            window.location.href="pricesort.html"
+        }
+        b1.textContent="price high to low"
+        b1.onclick=function(){
+            localStorage.setItem("price","price high to low")
+            window.location.href="pricesort.html"
+        }
+        b.append(b1)
+        document.getElementById("pricedown").append(a,b);
+        document.getElementById("price").removeEventListener("click",price);
+    }
+  
+
+    document.getElementById("size").addEventListener("click",size);
+    function size(){
+        document.getElementById("catdown").innerHTML ="";
+        document.getElementById("designerdown").innerHTML ="";
+        document.getElementById("dressdown").innerHTML ="";
+        document.getElementById("colordown").innerHTML ="";
+        document.getElementById("dressdown").innerHTML ="";
+        let a=document.createElement("div");
+        a.setAttribute("class","popdown");
+        let a1= document.createElement("a");
+        a1.textContent="34"
+        a.append(a1)
+        let b=document.createElement("div");
+        b.setAttribute("class","popdown");
+        let b1= document.createElement("a");
+        b1.textContent="36"
+        b.append(b1)
+        let c=document.createElement("div");
+        c.setAttribute("class","popdown");
+        let c1= document.createElement("a");
+        c1.textContent="38"
+        c.append(c1)
+        let d=document.createElement("div");
+        d.setAttribute("class","popdown");
+        let d1= document.createElement("a");
+        d1.textContent="40"
+        d.append(d1)
+        let e=document.createElement("div");
+        e.setAttribute("class","popdown");
+        let e1= document.createElement("a");
+        e1.textContent="42"
+        e.append(e1)
+        let f=document.createElement("div");
+        f.setAttribute("class","popdown");
+        let f1= document.createElement("a");
+        f1.textContent="44"
+        f.append(f1)
+        let g=document.createElement("div");
+        g.setAttribute("class","popdown");
+        let g1= document.createElement("a");
+        g1.textContent="46"
+        g.append(g1)
+        let h=document.createElement("div");
+        h.setAttribute("class","popdown");
+        let h1= document.createElement("a");
+        h1.textContent="48"
+        h.append(h1)
+
+
+        document.getElementById("sizedown").append(a,b,c,d,e,f,g,h);
+        document.getElementById("size").removeEventListener("click",size);
+    }
+
+    document.getElementById("color").addEventListener("click",color);
+    async function color(){
+        document.getElementById("catdown").innerHTML ="";
+        document.getElementById("dressdown").innerHTML ="";
+        document.getElementById("designerdown").innerHTML ="";
+        document.getElementById("sizedown").innerHTML ="";
+        document.getElementById("dressdown").innerHTML ="";
+        try{
+             let response = await fetch(`http://localhost:2445/product/main/clothing`)
+            let data=await response.json()
+            console.log(data)
+            let c=[]
+            for(let i=0; i<data.length; i++){
+                c.push(data[i].product_id.color)
+            }
+            console.log(c)
+           
+            for(let i=0; i<c.length;i++){
+                if(c[i]==c[i+1]){
+
+                }else{
+                    let a=document.createElement("div");
+                a.setAttribute("class","popdown");
+                a.textContent=c[i];
+                a.onclick=function(){
+                    localStorage.setItem("name",c[i])
+                    window.location.href="sort.html"
+                }
+                document.getElementById("colordown").append(a)
+                }
+            }
+            
+           
+      
+        }
+        catch(err){
+            console.log(err)
+            
+        }
+        document.getElementById("color").removeEventListener("click",color);
+        
+    }
+
+    document.getElementById("designer").addEventListener("click",designer);
+    async function designer(){
+        document.getElementById("catdown").innerHTML ="";
+        document.getElementById("dressdown").innerHTML ="";
+        document.getElementById("colordown").innerHTML ="";
+        document.getElementById("sizedown").innerHTML ="";
+        document.getElementById("dressdown").innerHTML ="";
+        try{
+             let response = await fetch(`http://localhost:2445/product/main/clothing`)
+            let data=await response.json()
+            
+            let d;
+            let maincat;
+            let c=[]
+            for(let i=0; i<data.length; i++){
+                console.log(data[i].maincat)
+                maincat=data[i].maincat;
+                c.push(data[i].designer_id.designer)
+            }
+            
+           
+            for(let i=0; i<c.length;i++){
+                if(c[i]==c[i+1]){
+
+                }else{
+                    let a=document.createElement("div");
+                a.setAttribute("class","popdown");
+                a.textContent=c[i];
+                a.onclick=function(){
+                    localStorage.setItem("maincat",maincat)
+                    localStorage.setItem("name",c[i])
+                    window.location.href="sort.html"
+                }
+                document.getElementById("designerdown").append(a)
+                }
+            }
+            
+           
+      
+        }
+        catch(err){
+            console.log(err)
+            
+        }
+        document.getElementById("designer").removeEventListener("click",designer);
+        
+    }
+    
+
+    document.getElementById("products").text(product())
+    async function product(){
+        try{
+             let response = await fetch(`http://localhost:2445/product/main`)
+            let data=await response.json()
+            const results=data.length;
+            
+            document.getElementById("no of products").textContent=results+"--"+"Results"
+            data.forEach(e=>{
+                
+                let a= document.createElement("div");
+                a.setAttribute("class","pshow");
+                a.setAttribute("id",e._id)
+                a.onclick=function(){
+                    
+                    localStorage.setItem("productid",e._id);
+                    window.location.href="descriptionpage.html"
+                }
+                let b= document.createElement("img");
+                b.setAttribute("id","pi")
+                b.src=e.product_id.image[0]
+                let c=document.createElement("p");
+                c.setAttribute("id","psdesigner")
+                c.textContent=e.designer_id.designer;
+                let d=document.createElement("p");
+                d.textContent=e.product_id.des;
+                let f=document.createElement("h3");
+                f.textContent="$  "+e.product_id.price
+                console.log()
+                let g=document.createElement("p");
+                g.setAttribute("id","pricemain")
+                g.textContent="$  " +e.product_id.pricemain
+                
+                a.append(b,c,d,f,g)
+                document.getElementById("products").append(a)
+            })
+           
+            
+        }
+        catch(err){
+            console.log(err)
+            
+        }
+        
+        
+    }
+</script>
+
+<script type="module">
+    import navbar from "./allfoundhtml/navbar.js"
+    import futter from "./allfoundhtml/allfooter.js"
+    // import productshow from "./allfoundhtml/productshow.js"
+    // document.getElementById("pass").innerHTML =productshow()
+    document.getElementById("ccc").innerHTML =navbar()
+    document.getElementById("footerimp").innerHTML=futter();
+</script>
+<script type="module" id="ccc">
+    document.getElementById("home").addEventListener("click",function(){
+        window.location.href="homepage.html"
+    })
+    const username=localStorage.getItem("username");
+    if (username!=null){
+        console.log("yes")
+        let lame=document.createElement("button");
+        lame.style.color="red"
+        lame.textcontent="sign out"
+        lame.onclick=function(){
+            localStorage.clear()
+        }
+        document.getElementById("usernameuu").innerHTML = "";
+        document.getElementById("usernameuu").append("Hi"+"!"+" "+username,lame)
+    }
+    
+</script>
+<script type="module" id="ccc">
+    import {superbrand,justin,bestseller,designer,clothing,shoes,bags,acc,iris,editorial,men} from "./alljs/nav.js"
+    document.getElementById("appendsuperbrand").addEventListener("mouseover", supe);
+    function supe() {superbrand()}
+    
+    
+    document.getElementById("appendjustin").addEventListener("mouseover",just);
+    function just(){justin()}
+    
+
+    document.getElementById("appendbestseller").addEventListener("mouseover",seller);
+    function seller() {bestseller()}
+
+    document.getElementById("appenddesigner").addEventListener("mouseover",des);
+    function des(){designer()}
+    document.getElementById("appendclothing").addEventListener("mouseover",cloth)
+    function cloth() {clothing()}
+    
+
+    document.getElementById("appendshoes").addEventListener("mouseover",shoe);
+    function shoe() {shoes()}
+
+    document.getElementById("appendbags").addEventListener("mouseover",bag);
+    function bag() {bags()}
+   
+    
+    document.getElementById("appendacc").addEventListener("mouseover",ac);
+    function ac() {acc()}
+   
+    document.getElementById("appendiris").addEventListener("mouseover",iri);
+    function iri() {iris()}
+    
+    document.getElementById("appendedi").addEventListener("mouseover",editori);
+    function editori() {editorial()}
+    
+    document.getElementById("appendmen").addEventListener("mouseover",mens);
+    function mens() {men()}
+
+</script>

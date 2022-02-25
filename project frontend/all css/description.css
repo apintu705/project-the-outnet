@@ -1,0 +1,66 @@
+#desmain{
+    width:90%;
+    margin:auto;
+    
+    display:flex;
+}.desalli{
+    margin-top: 10px;
+    
+}#desallim{
+    overflow: hidden;
+    height:150px;
+    width:150px;
+    -webkit-transition: all 2s ease;
+-moz-transition: all 2s ease;
+-ms-transition: all 2s ease;
+transition: all 2s ease;
+}
+#desallim:hover{
+    width: 300px;
+height: 300px;
+}
+
+#desimage{
+    padding:20px;
+    
+}#desim{
+    height:800px;
+    width:600px;
+}#desside{
+    
+    margin-left:50px;
+    width:100%;
+}
+#addtocart{
+    margin-top:50px;
+    margin-left:50px;
+    height:70px;
+    border:1px solid black;
+    width:450px;
+    background-color:black;
+    text-align:center;
+    color:white;
+}
+#addtocart:hover{
+    background-color:grey;
+}
+#wishlist:hover{
+    border:1px solid black;
+}
+#wishlist{
+    margin-top:50px;
+    margin-left:50px;
+    height:70px;
+    border:1px solid grey;
+    width:450px;
+    text-align:center;
+    background-color: white;
+}#desdelivery{
+    margin-top:100px;
+    margin-left: 50px;
+    border:1px solid black;
+    padding:15px;
+    border-radius:10px;
+
+
+}

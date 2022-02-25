@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./all css/signup.css">
+    <link rel="stylesheet" href="./all css/navbar.css">
+    <link rel="stylesheet" href="./all css/futter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div id="ccc"></div>
+    <div id="sall">
+        <div style="margin-top:100px">
+            <div id="sicre">
+                <p class="sit" style="font-size:20px">Welcome</p>
+                <hr>
+                <p class="sit"style="font-size:10px,font-weight:bold;margin-bottom:2px">Email Address</p>
+                <input class="siinp" id="email" type="text" placeholder="Email Address" />
+                <p class="sit"style="font-size:10px,font-weight:bold" onclick="signin()"><span class="dot"></span>I'm already registered</p>
+                <p class="sit"style="font-size:10px,font-weight:bold" onclick="signup()"><span style="background-color:green" class="dot"></span>I'm new to THE OUTNET</p>
+                <p class="sit"style="font-size:10px,font-weight:bold;margin-bottom:2px">Create New Password</p>
+                <input class="siinp" id="password" type="text" placeholder="Password" />
+                <h6 class="sit"style="margin-top:0px">Your password must be eight characters or more and contain an uppercase letter and number</h6>
+                <p class="sit"style="font-size:10px,font-weight:bold;margin-bottom:2px">First Name</p>
+                <input class="siinp" id="firstname" type="text" placeholder="firstname is required" />
+                <p class="sit"style="font-size:10px,font-weight:bold;margin-bottom:2px">Last Name</p>
+                <input class="siinp" id="lastname" type="text" placeholder="lastname is required" />
+                <p class="sit"style="font-size:10px,font-weight:bold">Want to remain stylishly in the know? Please tick here to receive THE OUTNET's promotional emails.</p>
+                <p class="sit"style="font-size:10px,font-weight:bold"><span class="dot"></span>Yes please!</p>
+                <p class="sit"style="font-size:10px,font-weight:bold"><span class="dot"></span>No thanks</p>
+                <br />
+                <button id="signinbtn">Register</button>
+                <p class="sit"style="font-size:3px,font-weight:bold">Forgot your password?</p>
+            </div>
+        </div>
+        
+    </div>
+    <div id="footerimp"></div>
+
+</body>
+</html>
+<script type="module">
+    import navbar from "./allfoundhtml/navbar.js"
+    import futter from "./allfoundhtml/allfooter.js"
+    document.getElementById("ccc").innerHTML =navbar()
+    document.getElementById("footerimp").innerHTML=futter();
+</script>
+<script>
+    document.getElementById("signinbtn").addEventListener("click", creat);
+        
+        let d;
+        async function creat(){
+            try{
+            let data={
+            firstName:document.getElementById("firstname").value,
+            lastName:document.getElementById("lastname").value,
+            email:document.getElementById("email").value,
+            password:document.getElementById("password").value,
+            
+            }
+            console.log(data);
+            let response=await fetch("http://localhost:2445/register",{
+                    method:"post",
+                    body:JSON.stringify(data),
+                    headers:{
+                        "content-type":"application/json"
+                    }
+                });
+    
+            d=await response.json();
+            let token=d.token;
+            ;
+            abalert(token);
+            }
+            catch (error) {
+                if(error){
+                    alert("USER ALREADY EXISTED")
+                }
+            }
+        }
+    
+        function abalert(d){
+            console.log(d)
+            if(d!=null){
+                alert("YOUR ACCOUNT HAS BEEN SUCCESSFULLY CREATED")
+                setTimeout(function(){
+                    window.location.href="signin.html"
+                },2000)
+            }else{
+                alert("USER ALREADY EXISTED")
+                
+            }
+        }
+        function signin(){
+        window.location.href="signin.html"
+    }
+    function signup(){
+        window.location.href="signup.html"
+    }
+
+</script>
+<script type="module" id="ccc">
+    document.getElementById("home").addEventListener("click",function(){
+        window.location.href="homepage.html"
+    })
+    const username=localStorage.getItem("username");
+    if (username!=null){
+        document.getElementById("usernameuu").innerHTML = "";
+        document.getElementById("usernameuu").append("Hi"+"!"+" "+username)
+    }
+    
+</script>

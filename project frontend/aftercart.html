@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <style>
+        #upper{
+            margin-top: 20px;
+            width:60%;
+            margin:auto;
+            background-color: white;
+            padding:20px;
+            position:-webkit-sticky;
+
+        }#homeref{
+            
+            padding:30px;
+            text-align:center;
+            background-color:white;
+        }.sheeping{
+            width:57%;
+            margin:auto;
+            background-color: white;
+            padding:40px;
+            margin-top:20px;
+        }
+        .addinp{
+            height:50px;
+            width:500px;
+            background-color: white;
+            border: 1px solid black; 
+            text-align:center;        
+        }.acbtn{
+            margin-top:20px;
+            height:50px;
+            width:500px;
+            border: 1px solid black; 
+            text-align:center; 
+            background-color: white;
+        }.acbtn:hover{
+            background-color:black;
+            color:white;
+        }
+    </style>
+</head>
+<body style="background-color:#f2f2f2">
+    <a href="homepage.html"><div id="homeref"><h1>THE OUTNET</h1></div></a>
+    <div style="margin-top:30px;">
+        <div id="upper">
+            <span><span style="font-size:24px" class="fa">&#xf290;</span>  My Bag </span>
+            <a href="cart.html"><p style="text-decoration:underline;float:right;">REVIEW</p></a>
+            <h3 id="to"></h3>
+        </div>
+        <div class="sheeping" ><p id="sheeping">SHIPPING ADDRESS</p></div>
+        <div class="sheeping">SHIPPING OPTIONS</div>
+        <div class="sheeping" id="payment">PAYMENT DETAILS</div>
+        <div class="sheeping" id="end">PROCEED TO PLACE YOU ORDER </div>
+    </div>
+    
+</body>
+</html>
+<script>
+    let total=localStorage.getItem("total");
+    document.getElementById("to").append("$"+"--"+"   " +total)
+    
+</script>
+<script type="module">
+    import {add,acc} from "./alljs/ac.js";
+    document.getElementById("sheeping").addEventListener("click",ac)
+    function ac(){
+        add()
+    }
+    document.getElementById("payment").addEventListener("click",accc)
+    function accc(){
+        acc();
+    }
+    document.getElementById("end").onclick=function(){
+        window.location.href="end.html"
+    }
+    
+</script>
